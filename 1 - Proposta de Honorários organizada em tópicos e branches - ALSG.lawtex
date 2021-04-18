@@ -1,0 +1,216 @@
+template[TEMP_TOPeBRC_PropostaDeHonorarios_ALSG] { 
+	metainfo { 
+		language = "pt_BR"
+		name = "Proposta de Honorários organizada em tópicos e branches - ALSG"
+		declarations {
+			branch[BRC_DisposicoesIniciais] {
+				name = "Disposições iniciais"
+				operations {
+					print "<disposicoesFinais.local>, <disposicoesFinais.data>.
+				<escritorio.nomeEmMaiuscula> = bold(uppercase(<escritorio.nome>))
+				<cliente.representanteLegal.nomeCompletoEmMaiuscula> =
+				bold(uppercase(<cliente.representanteLegal.nomeCompleto>))
+				Proponente: <escritorio.nomeEmMaiuscula>\n
+				Encaminhamento ao: <cliente.representanteLegal.nomeCompletoEmMaiuscula>\n
+				REF.: Prestação de Serviços Advocatícios\n
+				Prezado Senhor <cliente.representanteLegal.nome>,\n
+				O escritório <escritorio.nome> oferece seus serviços de consultoria jurídica, de acordo com a Solicitação de Proposta datada de <proposta.dataDaSolicitacao>, <proposta.modoDeEnvio>.\n
+				<proposta.dataDeValidadePorExtenso> = expandedDate(<proposta.dataDeValidade>)\n
+				Na hipótese das negociações serem realizadas durante o prazo de validade desta Proposta, ou seja, até a data de <proposta.dataDeValidadePorExtenso>, comprometemo-nos a negociar com base nas discriminações da presente proposta, sendo que após este prazo estará sujeita às modificações que porventura se fizerem necessárias, podendo resultar em novas negociações para o fechamento do respectivo Contrato de Prestação de Serviços.\n
+				Cientes de que V. Sas. não se obrigam a aceitar a proposta recebida, aguardamos retorno e nos colocamos a disposição para maiores esclarecimentos.\n
+				Atenciosamente,\n
+				<disposicoesFinais.advogadoPrincipal.nome>\n
+				Advogado\n
+				 \n
+				 \n
+				 \n
+				 \n"
+				}
+			},
+			topic[TOP_DadosDaConsultoria] {
+				name = "Dados da consultoria"
+				title = "Dados da consultoria"
+				operations {
+					print "<escritorio.numeroDeAdvogadosPorExtenso> = expandedNumber(<escritorio.numeroDeAdvogados>)\n
+						<escritorio.numeroDeEstagiariosPorExtenso> = expandedNumber(<escritorio.numeroDeEstagiarios>)\n
+						<escritorio.nome> = bold(<escritorio.nome>)\n
+						O escritório <escritorio.nome> atua a <escritorio.tempoDeAtuacao> na área de consultoria jurídica. Prezando pela ética e eficiência nos seus contratos de prestações de serviços advocatícios, atualmente o escritório conta com <escritorio.numeroDeAdvogadosPorExtenso> advogados e <escritorio.numeroDeEstagiariosPorExtenso> estagiário estudante de curso de bacharelado em direito, que estão disponíveis para eventuais demandas provenientes de contratos.\n
+						Temos a satisfação de informar que o <escritorio.nome> disponibiliza serviços especializados na solução rápida de conflitos, no âmbito \if {<proposta.haveraPrestacaoDeServicosExtrajudiciais>} EXTRAJUDICIAL e \end JUDICIAL. Nossa preocupação principal é atingir suas expectativas no que tange aos procedimentos \if {<proposta.haveraPrestacaoDeServicosExtrajudiciais>} administrativos e \end judiciais. Através dos nossos serviços estamos nos comprometendo a desenvolver trabalhos diferenciados, alocando nossos melhores recursos possíveis a serviço do cliente, que contará com profissionais qualificados e especializados.\n
+						 \n"
+				}
+			},
+			topic[TOP_ObjetoDaPrestacaoDeServico] {
+				name = "Objeto da prestação de serviço"
+				title = "Objeto da prestação de serviço"
+				operations {
+					print "Conforme solicitado, pelo <cliente.nome>, a referida proposta engloba a Consultoria Jurídica em demandas judiciais, na área \foreach {<area> IN |escritorio.areasDeAtuacao| SEPARATED BY  “,”\n
+						AND “e” } <area> /end. Quer seja o contratante atue como demandante, seja como, demandado.\n
+						\n"
+				}
+			},
+			topic[TOP_RegimeDeExecucao] {
+				name = "Regime de execução"
+				title = "Regime de execução"
+				operations {
+					print "O escritório <escritorio.nome>, para efetivar os serviços de consultoria jurídica, pretende, caso seja efetivado o contrato:\n
+						/if {“PESQUISA” IN <proposta.servicosConsultoriaPrestados>}\n
+						/item[letter] Iniciar pesquisas nos diversos sistemas utilizados pelo Tribunal de Justiça de São Paulo e pela Justiça Federal, para verificar se existem processos ativos em nome da empresa contratante;\n
+						/end\n
+						/if {“REUNIÕES” IN <proposta.servicosConsultoriaPrestados>}\n
+						/item[letter] Realizar reuniões com os representantes e/ou administradores da empresa contratante para que sejam apresentadas pela empresa contratante as eventuais demandas judiciais das quais necessite pleitear judicialmente;\n
+						/end\n
+						/if {“TREINAMENTO” IN <proposta.servicosConsultoriaPrestados>}\n
+						/item[letter] Realizar, anualmente, treinamento para a qualificação de funcionários da empresa contratante;\n
+						/end\n
+						/if {“CONSULTA VERBAL - HORÁRIO DE EXPEDIENTE” IN <proposta.servicosConsultoriaPrestados>}\n
+						/item[letter] Consulta verbal em horário de expediente;\n
+						/end\n
+						/if {“CONSULTA VERBAL - FORA DE EXPEDIENTE” IN <proposta.servicosConsultoriaPrestados>}\n
+						/item[letter] Consulta verbal fora do horário de expediente;\n
+						/end\n
+						/if {“CONSULTA ONLINE - HORÁRIO DE EXPEDIENTE” IN <proposta.servicosConsultoriaPrestados>}\n
+						/item[letter] Consulta online em horário de expediente;\n
+						/end\n
+						/if {“PARECERES POR ESCRITO” IN <proposta.servicosConsultoriaPrestados>}\n
+						/item[letter] Parecer escrito;\n
+						/end\n
+						/if {“ACOMPANHAMENTO DE PROCESSOS” IN <proposta.servicosConsultoriaPrestados>}\n
+						/item[letter] Acompanhamento a órgão administrativo ou judiciário;\n
+						/end\n
+						/if {“EXAME DE AUTOS DE PROCESSO” IN <proposta.servicosConsultoriaPrestados>}\n
+						/item[letter] Exame de autos de processo perante órgão administrativo ou judiciário;\n
+						/end\n
+						/if {“PODER DE PETICIONAMENTO” IN <proposta.servicosConsultoriaPrestados>}\n
+						/item[letter] Petição ou requerimento avulso, perante qualquer autoridade;\n
+						/end\n
+						/if {“REDIGIR CORRESPONDÊNCIAS” IN <proposta.servicosConsultoriaPrestados>}\n
+						/item[letter] Redigir correspondências que envolvam aspectos jurídicos relevantes;\n
+						/end\n
+						/if {“ELABORAÇÃO DE CONTRATOS CONSTITUTIVOS” IN <proposta.servicosConsultoriaPrestados>}\n
+						/item[letter] Elaboração de contratos constitutivos ou desconstitutivos de direitos;\n
+						/end\n
+						/if {“ELABORAÇÃO DE ESTATUTOS” IN <proposta.servicosConsultoriaPrestados>}\n
+						/item[letter] Elaboração ou assistência em contratos, estatutos e outros instrumentos;\n
+						/end\n
+						/if {“INTERVENÇÃO PÚBLICA” IN <proposta.servicosConsultoriaPrestados>}\n
+						/item[letter] Intervenção perante a Administração Pública;\n
+						/end\n
+						/if {“INTERVENÇÃO PARA SOLUÇÃO DE LITÍGIO” IN <proposta.servicosConsultoriaPrestados>}\n
+						/item[letter] Intervenção para a solução de litígio;\n
+						/end\n
+						/if {“MEDIDAS CAUTELARES” IN <proposta.servicosConsultoriaPrestados>}\n
+						/item[letter] Medidas cautelares em geral;\n
+						/end\n
+						/if {“PROTESTOS E NOTIFICAÇÕES EXTRA JUDICIAIS” IN <proposta.servicosConsultoriaPrestados>}\n
+						/item[letter] Interpelações, protestos e notificações extrajudiciais;\n
+						/end\n
+						/if {“HOMOLOGAÇÕES TRABALHISTAS” IN <proposta.servicosConsultoriaPrestados>}\n
+						/item[letter] Pedido de homologações trabalhistas em geral;\n
+						/end\n
+						/if {“DISSÍDIOS, CONVENÇÕES E MEDIAÇÕES” IN <proposta.servicosConsultoriaPrestados>}\n
+						/item[letter] Dissídios, convenções e mediação em acordos trabalhistas;\n
+						/end\n
+						/if {“EXECUÇÕES DE TÍTULOS DE CRÉDITO” IN <proposta.servicosConsultoriaPrestados>}\n
+						/item[letter] Execução de títulos de crédito;\n
+						/end\n
+						/if {“ACOMPANHAMENTO DE LICITAÇÕES” IN <proposta.servicosConsultoriaPrestados>}\n
+						/item[letter] Acompanhamento em processos licitatórios;\n
+						/end\n
+						/if {“RECURSOS ADMINISTRATIVOS” IN <proposta.servicosConsultoriaPrestados>}\n
+						/item[letter] Recursos Administrativos em geral;\n
+						/end\n
+						/if {“ADVOCACIA PREVENTIVA” IN <proposta.servicosConsultoriaPrestados>}\n
+						/item[letter] Advocacia preventiva nas áreas contratadas.\n
+						/end\n
+						 \n"
+				}
+			},
+			topic[TOP_EquipeDeConsultores] {
+				name = "Equipe de consultores"
+				title = "Equipe de Consultores"
+				operations {
+					print "/foreach {<membro> IN |membros|}\n
+						<membro.nome> (<membro.cargo>)/if {<membro.temEmail>}: E-mail: <membro.email> /end\n
+						 \n
+						/end\n
+						\n"
+				}
+			},
+			topic[TOP_InvestimentoECondicoesDePagamento] {
+				name = "Investimento e condições de pagamento"
+				title = "Investimento e condições de pagamento"
+				operations {
+					print "/if {“MENSAL” IN <proposta.tipoDePrestacao>}\n
+						 \n
+						<pgtoMensal.numDeSalMinPorExtenso> = bold(expandedNumber(<pgtoMensal.numDeSalMin>))\n
+						<pgtoMensal.valorSalMinPorExtenso> = expandedCurrency(<pgtoMensal.valorSalMin>)\n
+						<pgtoMensal.total> = <pgtoMensal.valorSalMin> * <pgtoMensal.numDeSalMin>\n
+						<pgtoMensal.total> = bold(<pgtoMensal.total>)\n
+						<pgtoMensal.totalPorExtenso> = bold(expandedCurrency(<pgtoMensal.total>))\n
+						O valor da prestação dos serviços advocatícios é equivalente ao montante de <pgtoMensal.numDeSalMinPorExtenso> salários mínimos, que devem ser pagos com periodicidade mensal. O valor atual do salário mínimo é de R$ <pgtoMensal.valorSalMin> (<pgtoMensal.valorSalMinPorExtenso>), deste modo, o valor mensal a ser pago é de R$ <pgtoMensal.total> (<pgtoMensal.totalPorExtenso>).\n
+						/else\n
+						<pgtoProj.horasTrabalhadas> = bold(<pgtoProj.horasTrabalhadas>)\n
+						<pgtoProj.total> = <pgtoProj.horasTrabalhadas> * <pgtoProj.valorDaHora>\n
+						<pgtoProj.total> = bold(<pgtoProj.total>)\n
+						<pgtoProj.totalPorExtenso> = bold(expandedCurrency(<pgtoProj.totalPorExtenso>))\n
+						O valor da prestação dos serviços advocatícios é equivalente a <pgtoProj.horasTrabalhadas> horas trabalhadas de um advogado, o qual deve ser pago ao final do projeto. O valor atual da hora trabalhada é de R$ <pgtoProj.valorDaHora> (<pgtoProj.valorDaHoraPorExtenso>), deste modo, o valor total a ser pago é de R$ <pgtoProj.total> (<pgtoProj.totalPorExtenso>).\n
+						/end\n
+						 \n"
+				}
+			},
+			topic[TOP_CondicoesGeraisDaProposta] {
+				name = "Condições gerais da proposta"
+				title = "Condições Gerais da Proposta"
+				operations {
+					print "<contrato.validadePorExtenso> = expandedNumber(<contrato.validade>)\n
+						O eventual contrato referente a presente proposta tem validade de <contrato.validade> (<contrato.validadePorExtenso>) ano, renovável por igual período.\n
+						Os trabalhos propostos serão coordenados pela equipe de profissionais da <escritorio.nome>, a qual atuará diretamente ou em parceria com outros profissionais especializados, conforme as necessidades e as particularidades da execução dos serviços propostos.\n
+						A proposta financeira, ora apresentada, tem validade de <proposta.validade>, contados da data de seu recebimento, findo o qual poderá estar sujeita a modificações que possam resultar em novas negociações para o fechamento do respectivo Contrato de Prestação de Serviços.\n
+						/if {<proposta.desejaAdicionarServicosAdicionais>}\n
+						 \n"
+				}
+			},
+			topic[TOP_ServicosAdicionaisAContratar] {
+				name = "Serviços adicionais a contratar"
+				title = "Serviços Adicionais (a contratar)"
+				operations {
+					print "	/foreach {<servico> IN |servicosAdicionais| SEPARATED BY  “;” AND “; e” }\n
+						/item[LETTER] <servico>\n
+						 \n
+						/end\n
+						/end\n
+						\n"
+				}
+			},
+			branch[BRC_DisposicoesFinais] {
+				name = "Disposições Finais"
+				operations {
+					print "Sem mais para o momento, aguardamos o oportuno retorno de V. Sa., com a assinatura do pertinente de acordo para efetivarmos a contratação dos serviços ora propostos.\n
+						 \n
+						Atenciosamente,\n
+						 \n
+						<disposicoesFinais.advogadoPrincipal.nome>\n
+						 \n
+						Advogado
+						\n"
+				}
+			}
+		} 
+	} 
+	head { 
+		title = "CARTA PROPOSTA DE PRESTAÇÃO DE SERVIÇOS ADVOCATÍCIOS" 
+ 	} 
+ 	body {
+		operations {
+			use branch[BRC_DisposicoesIniciais],
+			use topic[TOP_DadosDaConsultoria],
+			use topic[TOP_ObjetoDaPrestacaoDeServico],
+			use topic[TOP_RegimeDeExecucao],
+			use topic[TOP_EquipeDeConsultores],
+			use topic[TOP_InvestimentoECondicoesDePagamento],
+			use topic[TOP_CondicoesGeraisDaProposta],
+			use topic[TOP_ServicosAdicionaisAContratar],
+			use branch[BRC_DisposicoesFinais]
+		}
+ 	}
+}
