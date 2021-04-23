@@ -177,33 +177,15 @@ template[TEMP_VetoresDesviosCondicionaisEListaAssociativa_PropostaDeHonorarios_A
 						name = "Deseja adicionar Serviços Adicionais?"
 						request = "Informe se deseja adicionar Serviços Adicionais"
 					},
-					+|servicosAdicionais| : Vector [Text] {
-						name = "Serviços adicionais"
-						request = "Informe quais foram os serviços adicionais requisitados"
-						lower = 1
-						help = "Serviço de negociação de dívidas dos condôminos inadimplentes
-								Treinamento de funcionários
-								Acompanhamento de processos 
-								Palestras sobre gestão financeira para os condôminos."
-					},
-					if ([desejaAdicionarServicosAdicionais] == false) {
-						+[advogadoPrincipal] :Struct {
-							name = "Informações do advogado principal"
-							fields {
-								+[nome] : String {
-									name = "Nome do advogado principal"
-									request = "Informe o nome do advogado principal"
-								}
-							}
-						},
-						+[local] : String {
-							name = "Local de assinatura da Proposta de Honorários Advocatícios"
-							request = "Informe o local de assinatura da Proposta de Honorários Advocatícios"
-							default = "Camaçari"
-						},
-						+[data] : Date {
-							name = "Data de assinatura da Proposta de Honorários Advocatícios"
-							request = "Informe a data de assinatura da Proposta de Honorários Advocatícios"				
+					if ([desejaAdicionarServicosAdicionais] == true) {
+						+|servicosAdicionais| : Vector [Text] {
+							name = "Serviços adicionais"
+							request = "Informe quais foram os serviços adicionais requisitados"
+							lower = 1
+							help = "Serviço de negociação de dívidas dos condôminos inadimplentes
+									Treinamento de funcionários
+									Acompanhamento de processos 
+									Palestras sobre gestão financeira para os condôminos."
 						}
 					},
 					+[tipoDePrestacao] : List ("Mensal", "Por projeto") {
